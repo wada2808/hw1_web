@@ -1,0 +1,46 @@
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset="UTF-8">
+  <title>
+    Adicionar musica
+  </title>
+  <link rel="styleSheet" type="text/css" href="ManejadorCanciones.css">
+  <script type="text/JavaScript">
+	function adicionarCancion(nombreCancion)
+	{
+		var igual = 'Nombre de la cancion';
+		if (nombreCancion=='' || nombreCancion==igual)//Controlar que el envio no sea nulo o igual a Nombre de la cancion
+		{
+		  alert('Tiene que ingresar el nombre de una cancion');
+		  document.formulario.nombre.focus();////Coloca el cursor en el cuadro de texto despues de adicionar la cancion
+		  document.formulario.nombre.value='';//Limpia la caja de texto
+		}
+		else
+		{
+			var input = document.createElement('input');//Creamos un nuevo elemento utilizando Javascript
+			var br = document.createElement('br');
+			input.type = 'button';//Le asignamos los atributos al elemento input
+			input.name = 'nombre';
+			input.value = nombreCancion;//Le asingnamos al atributo value la nueva cancion que hemos traido desde la caja de texto
+			input.style.width= 300;//Le damos un ancho al nuevo boton que contiene la cancion adicionada
+			document.formulario.nombre.focus();//Coloca el cursor en el cuadro de texto despues de adicionar la cancion
+			document.formulario.nombre.value='';//Limpia la caja de texto
+			document.getElementById('listaCanciones').appendChild(input);//Referenciamos div con el nuevo elemento input y lo adicionamos lo adicionamos al elemento div
+			document.getElementById('listaCanciones').appendChild(br);			
+		}
+	}
+	
+  </script>
+</head>
+<body>
+<div id="listaCanciones">
+	<form name='formulario' action=javascript:adicionarCancion(nombreCancion.value)> <!--Creamos el formulario y el atributo action hacemos una llamada a la funcion cuando se da enter en el cuadro de texto-->
+		<fieldset>
+			<legend>Adicionar canciones que te gusten a la lista</legend>
+			<input type='text' name="nombre" value='Nombre de la cancion' id="nombreCancion" ></input> <!-- Creamos el atributo id para que guarde la cadena los datos ingresados en la caja de texto-->
+			<input class='but' type='button' value='Adicionar cancion' onClick="adicionarCancion(getElementById('nombreCancion').value);"></input> <!--El evento onClick llama a la funcion referenciandola con el valor del atributo de la caja de texto  -->
+		</fieldset>
+	</form>
+</div>
+</body>
+</html>
