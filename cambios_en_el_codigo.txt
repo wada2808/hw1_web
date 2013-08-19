@@ -1,0 +1,23 @@
+/*Hay que declarar una funcion que contenga las demas funciones y retorne un valor al objeto que ha la llamo.
+  Tambien hay que crear cada funcion que contenga la funcion principal
+*/
+var pelicula2 = //No se ha definido un valor numerico ni de string
+{
+	titulo: "Forbidden Planet",//Las variables se asigna mediante el signo (=) y cada instruccion se termina con ;
+	genero: "Classic Sci-fi",//Las variables se asigna mediante el signo (=) y cada instruccion se termina con ;
+	calificacion: 5,//Las variables se asigna mediante el signo (=) y cada instruccion se termina con ;
+	horario: ["5:00pm", "9:00pm"],//Esta variable al tener dos valores debe declararse como un arreglo
+								 //var horario=new array("5:00pm","9:00pm")
+	darProximaFuncion: function()//La sintaxis de la funcion es function(parametros)
+	{
+		var ahora = new Date().getTime();
+		for (var i = 0; i < horario.length; i++) 
+		{
+			var horario = darTiempoDesdeString(horario[i]);//La funcion darTiempoDesdeString no esta en este documento con lo cual no devolvera ningun valor
+			if ((horario - ahora) > 0)
+			{
+				return "Proxima funcion " + titulo + "es" + horario[i];
+			}
+		}
+	}
+};//Esto es un error por que no hay instruccion para cerrar
