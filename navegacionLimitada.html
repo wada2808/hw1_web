@@ -1,0 +1,35 @@
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset="UTF-8">
+<title>NavegacionLimitada</title>
+<script type="text/JavaScript">
+   	var tiempo;
+	var cerrar=window.onbeforeunload=function() 
+	{
+		return 'De verdad te quieres ir ???';
+	};
+	function activarTiempo()
+	{
+		tiempo=setInterval("crearInputs()",5000);//ponemos un retardo para crear el input de 5sg	
+	}
+	function crearInputs()
+	{
+		var input=document.createElement('input');//crea el input
+		input.type='button';//asigna el tipo
+		input.name='boton1';//asigna nombre
+		input.value='Otro boton aqui';//asigna texto para visualizar el input
+		document.getElementById('form').appendChild(input);//se adicional el input al formulario
+		alert('Cada 5s te crea un input');//se demora 5s para crear el input y escrirlo en el documento
+		clearTimeout(tiempo);//Paramos el contador poniendolo a cero
+	}
+</script>
+</head>
+<body>
+<form id="form">
+	<fieldset id="field">
+		<legend>INGRESA VARIOS INPUT CON UN RETARDO DE 5sg Y NO PUEDES SALIR DE LA PAGINA NI NAVEGAR HACIA OTRA WEB<legend>
+		<input type="button" value="Agregar inputs hasta que te pare el tiempo" onclick="activarTiempo()"></input>
+	</fieldset>
+</form>
+</body>
+</html>
