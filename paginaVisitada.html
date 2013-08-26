@@ -1,0 +1,66 @@
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset="UTF-8">
+<link rel="styleSheet" type="text/css" href="paginaVisitada.css">
+<title>JavaScript</title>
+<script type="text/JavaScript">
+	var i=0, visitadas=0, teletubies='http://pbskids.org/teletubbies';
+	var enlaces=new Array();
+	i=parseInt(i);
+	function buscarUrl(enlace1)
+	{
+		var j, paginas;
+		if(enlace1 == '' || enlace1 == 'Ingrese Url')//compueba que la url sea correcta
+		{	alert('Ingresa una direccion valida')	}
+		else
+			{
+				enlaces[i]=enlace1;//asigna la nueva direccion a una posicion en el arreglo de url
+				i=i+1;
+				comprobar(enlaces,enlace1);//esta funcion lleva todas las direcciones y la direccion actual
+			}
+	}
+	function comprobar(enlaces,enlace1)
+	{
+		var j;
+		for(j=0;j<enlaces.length;j++)
+		{
+			if(enlaces[j]==teletubies && enlace1==teletubies)//busca en el arreglo si la pagina teletubbies existe
+			{
+				alert('Oh te gusta Teletubies');
+				crearFrame(enlaces[j]);	//esta funcion crea el nuevo frame con el parametro de la nueva url
+				break;//rompre el ciclo for
+			}
+		}
+		if(enlace1 != teletubies) {crearFrame(enlace1);}
+	}
+	function crearFrame(enlace2)
+	{
+		var marco, marco1;
+		marco=document.createElement('iframe')//crea el nuevo frame y lo asignamos a una variable para poder acceder a sus propiedades
+		marco.id="marco";//asignamos el id al nuevo frame
+		marco.src=enlace2;//asignamos el enlace url para cargarlo en el marco
+		var control=document.getElementById('marco');//refenciamos el tag al documento
+		if(control==null)//para que no cree varios frames a la vez
+		{
+			document.body.appendChild(marco);//adiciona el marco con sus propiedades
+		}
+		else 
+		{
+			window.location=enlace2;//carga la pagina completamente	
+		}
+	}
+</script>
+</head>
+<div id="contenedor">
+	<form id="form" action=javascript:buscarUrl(enlace.value)>
+		<fieldset id="field">
+			<legend>INGRESA LA URL DE TELETUBBIES Y SI HAS NAVEGADO EN ELLA TE SACA UN MENSAJE DE TEXTO<legend>
+			<br>
+			<label id="texto"><span>Ingrese la URL de la pagina Web:</span></label>
+			<input type="url" id="enlace" name="web" value="Ingrese Url" autofocus></input>
+			<input type="button" id="boton" value="Buscar" onClick="buscarUrl(getElementById('enlace').value);"></input>
+		</fieldset>
+	</form>
+</div>
+</body>
+</html>
