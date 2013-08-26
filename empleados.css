@@ -1,0 +1,28 @@
+#cuerpo1{
+	border:0px solid;
+	/*background: -webkit-linear-gradient(#F6CECE,#F8ECE0,#F6CECE);*/
+	background:-webkit-gradient(linear, 40% 80%, 0% 97%, from(#A4A4A4), to(#D8D8D8)) 
+}
+#titulo{
+	margin:auto;
+	text-align:center;
+	width:650px;
+	background: -webkit-linear-gradient(#F5A9A9,#F8ECE0,#F5A9A9);
+	border-radius:5px;
+}	
+#capa1{
+	border:0px solid;
+	width:280px;
+	height:148px;
+	margin:auto;
+}
+#capa1 input{
+	width:278px;
+	padding:3px 3px 3px 3px;
+	border-radius:10px;
+	background: -webkit-repeating-linear-gradient(100deg, #B40404, #F5A9A9 40%,#B40404 60%);
+	font-weight:bolder;
+	-webkit-box-shadow: 3px 3px 5px #6E6E6E;
+	color:white;
+	font-size:11pt;
+}
