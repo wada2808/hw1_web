@@ -1,0 +1,279 @@
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset="UTF-8">
+<link rel="styleSheet" type="text/css" href="empleados.css">
+<title>Ignresar empleados</title>
+<script type="text/JavaScript">
+	var empleado=new Array();
+	function ingresar()
+	{
+		var dato;
+		/*dato=prompt('Ingrese el nombre del empleado: ','');
+		empleado[0]=dato;
+		dato=prompt('Ingrese los apellidos del empleado: ','');
+		empleado[1]=dato;
+		dato=prompt('Ingrese la identificacion del empleado: ','');
+		empleado[2]=dato;*/
+		dato=prompt('Ingrese la fecha de nacimiento del empleado: ','');
+		empleado[3]=dato;
+		dato=prompt('Ingrese el salario del empleado: ','');
+		empleado[4]=dato;
+		dato=prompt('Ingrese la fecha de entrada del empleado: ','');
+		empleado[5]=dato;	
+	}
+	
+	function modificarEmpleado()
+	{
+		var dato, salarioAntiguo;
+		salario=parseInt(salarioAntiguo); salarioAntiguo=empleado[4];
+		dato=prompt('Ingrese el nuevo salario: ','');
+		if(dato>=1 && dato<=10000000 && empleado[3]==undefined)
+		{
+			empleado[4]=dato;
+			var nuevaVentana=window.open("","Datos","");
+			nuevaVentana.document.write('La modificacion del salario ha quedado realizada'+'<br>');
+			nuevaVentana.document.write('El salario nuevo es: '+dato+'<br>');
+			nuevaVentana.document.write('El salario antiguo es: '+salarioAntiguo+'<br>');
+		}
+		else
+		{
+			if(dato>=1 && dato<=10000000 && empleado[3]!=undefined)
+			{
+				empleado[4]=dato;
+				var nuevaVentana=window.open("","Datos","");
+				nuevaVentana.document.write('La modificacion del salario ha quedado realizada'+'<br>');
+				nuevaVentana.document.write('El salario nuevo es: '+dato+'<br>');
+				nuevaVentana.document.write('El salario antiguo es: '+salarioAntiguo+'<br>');
+			}
+			else{alert('El salario ingresado no es correcto, va desde: [1 - 10000000]'); return modificarEmpleado();}	
+		}
+	}
+	
+	function edadActual()
+	{
+		var fechaIngresada;
+		fechaIngresada=empleado[3];
+		if(fechaIngresada==undefined){alert('Debes ingresar los datos del empleado primero');}
+		else{antiguedadEmpleado(fechaIngresada,1);}
+	}
+		
+	function antiguedad()
+	{
+		var fechaIngresada;
+		fechaIngresada=empleado[5];
+		if(fechaIngresada==undefined){alert('Debes ingresar los datos del empleado primero');}
+		else{antiguedadEmpleado(fechaIngresada,2);}
+	}
+	
+	function prestaciones()
+	{
+		var fechaIngresada;
+		fechaIngresada=empleado[5];
+		if(fechaIngresada==undefined){alert('Debes ingresar los datos del empleado primero');}
+		else{antiguedadEmpleado(fechaIngresada,3);}
+	}
+	
+	function antiguedadEmpleado(fechaIngresada,escojerFuncion)
+	{
+		var fechaActual=new Date(), arregloFecha=new Array(), fechaNacimiento, arregoFechaNacimiento=new Array();
+		fechaNacimiento=empleado[3];
+		arregloFechaNacimiento=fechaNacimiento.split("/");
+		var arregloFecha=fechaIngresada.split("/");//Se descompone la fecha y se pone en cada posicion del arreglo
+		if(arregloFecha.length!=3)//verificar si la fecha es correcta
+		{
+			alert('Fecha incorrecta, el formato es dd/mm/aaaa');
+			return ingresar();//retorna a la funcion ingresar fecha
+		}
+		var dia, mes, year, year1;
+		dia=parseInt(dia); dia=arregloFecha[0];
+		if(dia<1 || dia>31)
+		{alert('Dia incorrecto, el intervalo es de [1-31] o el dia es mayor al actual'); return ingresar();}
+		mes=parseInt(mes); mes=arregloFecha[1];
+		if(mes<1 || mes>12)
+		{alert('Mes incorrecto, el intervalo va desde [1-12]'); return ingresar();}
+		year=parseInt(year); year=arregloFecha[2];
+		year1=parseInt(year1); year1=arregloFechaNacimiento[2];
+		if(year<1940 || year>(fechaActual.getFullYear()))
+		{alert('Year incorrecto, el intervalo es de [1940-[year actual]'); return ingresar();}
+			
+		else
+		{
+			 if(year1>(fechaActual.getFullYear()-19))
+			 {alert('El trabajador no puede tener menos de 18 años'); return ingresar();}
+				
+		}
+		var yearReal=0, mesReal=0, diaReal=0;
+		yearReal=parseInt(yearReal); mesReal=parseInt(mesReal); diaReal=parseInt(diaReal);
+		//alert(dia);alert(mes);alert(year);alert(year1); alert(escojerFuncion);
+		if(fechaActual.getFullYear()-year==0)//calcula solo los meses y los dias de la antiguedad
+		{
+			if(fechaActual.getDate()-dia>=0 && (fechaActual.getMonth()+1)-mes>=0)
+			{
+				mesReal=(fechaActual.getMonth()+1)-mes;
+				diaReal=fechaActual.getDate()-dia;
+				if(escojerFuncion==1)
+				{crearVentanaEdadActual(diaReal,mesReal,0);}
+					
+				else
+				{
+					if (escojerFuncion==2)
+					{crearVentanaAntiguedad(diaReal,mesReal,0);}
+						
+					else
+					{crearVentanaPrestaciones(diaReal,mesReal,0);}
+						
+				}
+			}
+			else
+			{
+				diaReal=30+(fechaActual.getDate()-dia);
+				mesReal=fechaActual.getMonth()-mes;
+				if(escojerFuncion==1)
+				{crearVentanaEdadActual(diaReal,mesReal,0);}
+					
+				else
+				{
+					if (escojerFuncion==2)
+					{crearVentanaAntiguedad(diaReal,mesReal,0);}
+					else{crearVentanaPrestaciones(diaReal,mesReal,0);}
+				}
+			}
+		}
+		else
+		{
+		if(fechaActual.getDate()-dia>=0 && (fechaActual.getMonth()+1)-mes>=0)
+			{
+				yearReal=fechaActual.getFullYear()-year;
+				mesReal=(fechaActual.getMonth()+1)-mes;
+				diaReal=fechaActual.getDate()-dia;
+				if(escojerFuncion==1)
+				{crearVentanaEdadActual(diaReal,mesReal,yearReal);}					
+				else
+				{
+					if (escojerFuncion==2)
+					{crearVentanaAntiguedad(diaReal,mesReal,yearReal);}
+					else{crearVentanaPrestaciones(diaReal,mesReal,yearReal);}
+				}
+			}
+		else
+		{
+			if(fechaActual.getDate()-dia<0 && (fechaActual.getMonth()+1)-mes<0)
+			{
+				diaReal=30+(fechaActual.getDate()-dia);
+				mesReal=(fechaActual.getMonth()+1)-mes+12-1;
+				yearReal=fechaActual.getFullYear()-year-1;
+				if(escojerFuncion==1){crearVentanaEdadActual(diaReal,mesReal,yearReal);}
+				else
+				{
+					if (escojerFuncion==2){crearVentanaAntiguedad(diaReal,mesReal,yearReal);}
+					else{crearVentanaPrestaciones(diaReal,mesReal,yearReal);}	
+				}
+			}
+			else
+			{
+				if(fechaActual.getDate()-dia<0 && (fechaActual.getMonth()+1)-mes>0)
+				{
+					diaReal=30+(fechaActual.getDate()-dia);
+					mesReal=(fechaActual.getMonth()+1-mes)-1;
+					yearReal=fechaActual.getFullYear()-year;
+					if(escojerFuncion==1)
+					{crearVentanaEdadActual(diaReal,mesReal,yearReal);}	
+					else
+					{
+						if (escojerFuncion==2)
+						{crearVentanaAntiguedad(diaReal,mesReal,yearReal);}	
+						else
+						{crearVentanaPrestaciones(diaReal,mesReal,yearReal);}	
+					}
+				}
+				else
+				{
+					if(fechaActual.getDate()-dia>=0 && (fechaActual.getMonth()+1)-mes<0)
+					{
+						diaReal=fechaActual.getDate()-dia;
+						mesReal=fechaActual.getMonth()+1-mes+12;
+						yearReal=fechaActual.getFullYear()-year-1;
+						if(escojerFuncion==1)
+							{crearVentanaEdadActual(diaReal,mesReal,yearReal);}
+						else
+						{
+							if (escojerFuncion==2)
+							{crearVentanaAntiguedad(diaReal,mesReal,yearReal);}
+							else
+							{crearVentanaPrestaciones(diaReal,mesReal,yearReal);}
+						}
+					}
+					else
+					{
+						diaReal=fechaActual.getDate()-dia+30;
+						mesReal=11;
+						yearReal=fechaActual.getFullYear()-year-1;
+						if(escojerFuncion==1)
+							{crearVentanaEdadActual(diaReal,mesReal,yearReal);}
+						else
+						{
+							if (escojerFuncion==2)
+							{crearVentanaAntiguedad(diaReal,mesReal,yearReal);}
+							else
+							{crearVentanaPrestaciones(diaReal,mesReal,yearReal);}
+						}
+					}
+				}
+			}
+		}
+		}
+	}
+	
+	function crearVentanaEdadActual(dia,mes,year)
+	{
+		var nuevaVentana=window.open("","Datos","");
+		nuevaVentana.document.write('La edad del empleado es: '+' '+year+' años'+' '+mes+' meses y'+' '+dia+' dias'+'<br>');
+	}
+	
+	function crearVentanaAntiguedad(dia,mes,year)
+	{
+		var nuevaVentana=window.open("","Datos","");
+		nuevaVentana.document.write('La antiguedad del empleado es: '+' '+year+' años'+' '+mes+' meses y'+' '+dia+' dias'+'<br>');
+	}
+	
+	function crearVentanaPrestaciones(dia,mes,year)
+	{
+		var salario=empleado[4], mensual=0, diario=0, prestacion=0, i=0;;
+		if(salario>=1 && salario<=10000000)
+		{
+			mensual=parseFloat(mensual); diario=parseFloat(diario); prestacion=parseFloat(prestacion);
+			mensual=salario/12; diario=mensual/30;
+			prestacion=((salario*year)+(mensual*mes)+(diario*dia))/12;
+			var nuevaVentana=window.open("","Datos","");
+			nuevaVentana.document.write('La antiguedad del empleado es: '+' '+year+' años'+' '+mes+' meses y'+' '+dia+' dias'+'<br>');
+			nuevaVentana.document.write('La prestacion a la que tiene derecho el empleado es: '+' '+prestacion+'<br>');
+		}
+		else
+		{
+			for(i=0;i<10;i++)
+			{ 
+				alert('El salario ingresado no es correcto, va desde: [1 - 10000000]');
+				salario=prompt('Ingrese el nuevo salario: ','');
+				if(salario>=1 && salario<=10000000)
+				{
+					empleado[4]=salario;
+					return prestaciones();
+				}
+			}
+		}
+	}	
+</script>
+</head>
+<body id="cuerpo1">
+<h2 id="titulo">OPERACIONES CON EL EMPLEADO</h2><br>
+<div id="capa1">
+	
+		<input type="button" name="boton" value="Ingresar datos" onclick="Javascript:ingresar()"/>
+		<input type="button" name="boton" value="Modificar salario" onclick="Javascript:modificarEmpleado()"/>
+		<input type="button" name="boton" value="Edad actual" onclick="Javascript:edadActual()"/>
+		<input type="button" name="boton" value="Antiguedad en la empresa" onclick="javascript:antiguedad()"/>
+		<input type="button" name="boton" value="Prestaciones a las que tiene derecho" onclick="javascript:prestaciones()"/>
+</div>
+
+</body>
+</html>
