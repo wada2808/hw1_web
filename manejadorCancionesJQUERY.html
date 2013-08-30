@@ -1,0 +1,41 @@
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>Efectos con jQuery</title>
+	<script src="jquery-1.10.2.js" type="text/Javascript"></script><!--Se hace un llamado al archivo que contiene el codigo jquery-->
+	<script>
+		function sumarCancion()//funcion que se invoca haciendo clic en el boton o dando enter dentro del cuadro de texto
+		{
+			$(document).ready(function()//Verifica que todos los elementos del documento se hayan cargado
+			{		
+				var igual = 'Nombre de la cancion';//asigna una cadena string a la variable
+				if($("#nombreCancion").val()=='' || $("#nombreCancion").val()==igual)//compara el atributo value del input para verificar la entrada de texto
+				{
+					alert('Tiene que ingresar el nombre de una cancion');
+					document.formulario.nombre.focus();//posiciona el cursor el caja de texto
+				}
+				else
+				{
+					var nuevoElemento=$('<input type="button" value="'+$("#nombreCancion").val()+'" name="nombre"/> <br>');//crea un nuevo elemento dinamico y le asigna valores a los atribuotos
+					nuevoElemento.css("width", "300");//agregamos estilo llamando al css
+					nuevoElemento.appendTo("#listaCanciones");//adicionamos el nuevo elemento al div
+					document.formulario.nombre.focus();
+				}
+			});
+		}
+	</script>
+</head>
+<body>
+<div id="listaCanciones">
+	<form name='formulario' action=Javascript:sumarCancion()> <!--Creamos el formulario y el atributo action llama a la funcion cuando se da enter en el cuadro de texto-->
+		<fieldset>
+			<legend>Adicionar canciones que te gusten a la lista</legend>
+			<input id="nombreCancion" type='text' name="nombre" value='Nombre de la cancion' autofocus></input> <!-- Creamos el atributo id para que guarde la cadena los datos ingresados en la caja de texto-->
+			<input id="ingresarCancion" type='button' name="boton" value='Adicionar cancion'/ onclick="sumarCancion()"> <!--cuando se de click sobre el boton llama la funcion-->
+		</fieldset>
+	</form>
+</div>
+</body>
+</html>
