@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<head>
+	<title>Fotos Iglesia de la Ermita</title>
+	 <link rel="styleSheet" type="text/css" href="guiaTuristica.css">
+	<script type="text/Javascript">
+		var misImagenes=new Array(7);
+		misImagenes[0]="C:/Users/Alvaro/Documents/Cursos/Programacion orientada a la Web/Javascript/Laboratorio1/cali.jpg";
+		misImagenes[1]="C:/Users/Alvaro/Documents/Cursos/Programacion orientada a la Web/Javascript/Laboratorio1/foto.jpg";
+		misImagenes[2]="C:/Users/Alvaro/Documents/Cursos/Programacion orientada a la Web/Javascript/Laboratorio1/foto1.jpg";
+		misImagenes[3]="C:/Users/Alvaro/Documents/Cursos/Programacion orientada a la Web/Javascript/Laboratorio1/foto2.jpg";
+		misImagenes[4]="C:/Users/Alvaro/Documents/Cursos/Programacion orientada a la Web/Javascript/Laboratorio1/foto3.jpg";
+		misImagenes[5]="C:/Users/Alvaro/Documents/Cursos/Programacion orientada a la Web/Javascript/Laboratorio1/foto4.jpg";
+		misImagenes[6]="C:/Users/Alvaro/Documents/Cursos/Programacion orientada a la Web/Javascript/Laboratorio1/foto5.jpg";
+		misImagenes[7]="C:/Users/Alvaro/Documents/Cursos/Programacion orientada a la Web/Javascript/Laboratorio1/foto6.jpg";
+		var i=0;
+		function cargarPrimeraImagen(){//carga la primera imagen
+			document.imgSrc.src=misImagenes[0];
+		}
+		function mostrarImagen(x){
+			document.imgSrc.src=misImagenes[x]; i=x;
+		}
+		function anterior(){
+			if(i>0){
+				i=i-1; 
+				var numImg=i;
+				document.imgSrc.src=misImagenes[numImg];
+			}
+			else {
+				var numImg=i; document.imgSrc.src=misImagenes[numImg];
+			}
+		}
+		function siguiente(){
+			if(i<7){
+				i=i+1; 
+				var numImg=i;
+				document.imgSrc.src=misImagenes[numImg];
+			}
+			else {
+				var numImg=i; document.imgSrc.src=misImagenes[numImg];
+			}
+		}
+		window.onload=cargarPrimeraImagen;
+	</script>
+</head>
+<body id="cuerpo">
+	<p id="titulo">IGLESIA LA ERMITA</p>
+	<div class="capa">
+		<p>Ubicada en la esquina de la carrera 1ª con calle 13, su nombre original fue “Ermita de Nuestra Señora de la Soledad del Río”, construída hacia el año de 1602. El templo actual no tiene nada que ver con el original, salvo el emplazamiento, ya que es de estilo neogótico y data de 1942
+			Está siempre llena de gente muy devota, rezando, y es también uno de los puntos más turísticos de la ciudad, aunque es pequeña; como bastantes iglesias góticas americanas está inspirada en la Catedral de Ulm, Alemania.
+			Las vidrieras de la iglesia, con imágenes de los apóstoles, son bastante bonitas, y hay una virgen con vestidos muy elaborados. También destaca la pila bautismal, hecha en mármol blanco.
+		</p>
+	</div>
+	<div class="capa1">
+		<div id="capa2">
+			<a href="#" onclick="mostrarImagen(0)"><img src="C:/Users/Alvaro/Documents/Cursos/Programacion orientada a la Web/Javascript/Laboratorio1/cali.jpg" border="0" width="100" height="100" onmouseout="this.style.opacity=1;this.filters.alpha.opacity='100';" onmouseover="this.style.opacity=0.7;this.filters.alpha.opacity='70';""/>
+		</div>
+		<div id="capa3">
+			<a href="#" onclick="mostrarImagen(1)"><img src="C:/Users/Alvaro/Documents/Cursos/Programacion orientada a la Web/Javascript/Laboratorio1/foto.jpg""/></a>
+		</div>
+		<div id="capa4">
+			<a href="#" onclick="mostrarImagen(2)"><img src="C:/Users/Alvaro/Documents/Cursos/Programacion orientada a la Web/Javascript/Laboratorio1/foto1.jpg"/></a>
+		</div>
+		<div id="capa5">
+			<a href="#" onclick="mostrarImagen(3)"><img src="C:/Users/Alvaro/Documents/Cursos/Programacion orientada a la Web/Javascript/Laboratorio1/foto2.jpg"/></a>
+		</div>
+		<div id="capa6">
+			<a href="#" onclick="mostrarImagen(4)"><img src="C:/Users/Alvaro/Documents/Cursos/Programacion orientada a la Web/Javascript/Laboratorio1/foto3.jpg"/></a>
+		</div>
+		<div id="capa7">
+			<a href="#" onclick="mostrarImagen(5)"><img src="C:/Users/Alvaro/Documents/Cursos/Programacion orientada a la Web/Javascript/Laboratorio1/foto4.jpg"/></a>
+		</div>
+		<div id="capa8">
+			<a href="#" onclick="mostrarImagen(6)"><img src="C:/Users/Alvaro/Documents/Cursos/Programacion orientada a la Web/Javascript/Laboratorio1/foto5.jpg"/></a>
+		</div>
+		<div id="capa9">
+			<a href="#" onclick="mostrarImagen(7)"><img src="C:/Users/Alvaro/Documents/Cursos/Programacion orientada a la Web/Javascript/Laboratorio1/foto6.jpg"/></a>
+		</div>
+	</div>
+	<div class="capa10">
+		<img id="imgSrc" name="imagenes"/>
+		<br><br>
+	</div>
+	<div id="capa11">
+		<input id="boton" type="button" value="anterior" onclick="anterior()"/>
+		<input id="boton1" type="button" value="siguiente" onclick="siguiente()"/>
+	</div>
+</body>
+</html>
