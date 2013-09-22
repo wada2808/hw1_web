@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<head>
+	<link rel="styleSheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css"/>
+	<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+	<title>Crear mapa con leaflet</title>
+	<style>
+		#map {widh:50px; height:750px; border:1px solid;}
+	</style>
+</head>
+<body>
+
+<div id="map"></div>
+	<script type="text/JavaScript">		
+		var map = L.map("map").setView([ 3.43722,-76.5225], 13);//crea el mapa segun la latitud y longitud que le demos y un nivel de zoom
+		L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
+		{ attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+		maxZoom: 23
+		}).addTo(map);
+		L.control.scale().addTo(map);//Añadimos un control de escala
+		L.marker([3.4540609,-76.5321135],{draggable:false}).addTo(map).bindPopup("<a href=javascript:window.open('C:/Users/Alvaro/Documents/Cursos/Programacion%20orientada%20a%20la%20Web/Javascript/Laboratorio1/infoErmita.html','Google','status=yes,width=600,height=400')><b>Iglesia la Ermita</b></a>"+'<br>'+'LatLng(3.4540609,-76.5321135)').openPopup();//agregamos un icono que inicia en una posicion y se puede mover
+		L.marker([3.4476,-76.54196],{draggable:false}).addTo(map).bindPopup("<a href=javascript:window.open('C:/Users/Alvaro/Documents/Cursos/Programacion%20orientada%20a%20la%20Web/Javascript/Laboratorio1/infoSanAntonio.html','Google','status=yes,width=600,height=400')><b>Iglesia San Antonio</b></a>"+'<br>'+'LatLng(3.4476,-76.54196)').openPopup();
+		L.marker([3.47574,-76.51589],{draggable:false}).addTo(map).bindPopup("<a href=javascript:window.open('C:/Users/Alvaro/Documents/Cursos/Programacion%20orientada%20a%20la%20Web/Javascript/Laboratorio1/infoNuestraSenoraMerced.html','Google','status=yes,width=600,height=400')><b>Iglesia Nuestra Señora de la Merced</b></a>"+'<br>'+'LatLng(3.47574,-76.51589)').openPopup();
+		//var popup = L.popup();//funcion para crear una ventana		
+		function onMapClick(e) {//funcion que captura el evento click obteniendo sus coordenadas
+			var latitudLongitud=e.latlng;
+			L.marker(e.latlng,{draggable:false}).addTo(map).bindPopup('Marcador puesto en las coordenadas : '+e.latlng.toString()).openPopup();//crea un marcador y muestra sus coordenadas en el mapa
+		}
+		map.on('click', onMapClick);
+	</script>
+</body>
+</html>
