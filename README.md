@@ -1,4 +1,4 @@
 hw1_web
 =======
 
-Ejercicion en Javascript, css y html
+Ejercicios en Javascript, css y html
